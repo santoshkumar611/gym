@@ -4,29 +4,53 @@
   </div>
   <ion-content class="has-header padding" scroll="true" overflow-scroll="true">
 
-    <form name="registerationForm">
+    <form name="registerationForm" ng-init="user = {}" ng-submit="signup()" novalidate>
       <div class="list">
-        <label class="item item-input">
+        <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.firstName.$invalid&&registerationForm.firstName.$touched, 'no-errors' : registerationForm.firstName.$valid}">
           <span class = "input-label">First Name</span>
-         <input type = "text" placeholder = "enter first name" required />
+          <input type = "text" name="firstName" ng-model = "user.firstName" placeholder = "enter first name" required />
         </label>
-
+        <div class="error-container" ng-show="(registerationForm.firstName.$invalid && registerationForm.firstName.$touched) || (registerationForm.firstName.$invalid && registerationForm.firstName.$submitted) " ng-messages="registerationForm.firstName.$error">
+          <div class="error" ng-message="required">
+            <i class="ion-information-circled"></i> 
+            This field is required!
+          </div>
+          <div ng-messages-include="error-list.html"></div>
+        </div>
         <label class="item item-input">
           <span class = "input-label">Last Name</span>
-          <input type = "text" placeholder = "enter last name" required/>
+          <input type = "text" name="lastName" ng-model = "user.lastName" placeholder = "enter last name" required/>
         </label>
+        <div class="error-container" ng-show="(registerationForm.firstName.$invalid && registerationForm.firstName.$touched) || (registerationForm.firstName.$invalid && registerationForm.firstName.$submitted) " ng-messages="registerationForm.firstName.$error">
+          <div class="error" ng-message="required">
+            <i class="ion-information-circled"></i> 
+            This field is required!
+          </div>
+        </div>
         <label class="item item-input">
           <span class = "input-label">Email</span>
-          <input type = "email" placeholder = "enter email" required/>
+          <input type = "email" name="email" ng-model = "user.email" placeholder = "enter email" required/>
         </label>
         <label class="item item-input">
-            <span class = "input-label">Address</span>
-            <input type = "email" placeholder = "enter address" required/>
-          </label>
+          <span class = "input-label">Address</span>
+          <input type = "text" name="address" ng-model="user.address" placeholder = "enter address" required/>
+        </label>
+        <label class="item item-input">
+          <span class = "input-label">City</span>
+          <input type = "text" name="city" ng-model="user.city" placeholder = "enter city" required/>
+        </label>
+        <label class="item item-input">
+          <span class = "input-label">State</span>
+          <input type = "text" name="state" ng-model="user.state" placeholder = "enter state" required/>
+        </label>
+        <label class="item item-input">
+          <span class = "input-label">Zipcode</span>
+          <input type = "text" name="zipcode" ng-model="user.zipcode" placeholder = "enter zipcode" required/>
+        </label>{{registerationForm.$valid}}
       </div>
       <button class="button button-full button-positive" type="submit">
-          Sign In
-        </button>
+        Sign In
+      </button>
     </form>
   </ion-content>
 </ion-view>
