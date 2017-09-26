@@ -30,6 +30,7 @@
   <!-- cordova script (this will be a 404 during development) -->
   <script src="cordova.js"></script>
   <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+  <script src="lib/angular-messages/angular-messages.min.js"></script>
   <!-- your app's js -->
   <script src="js/app.js"></script>
   <script src="js/controllers/sessionctrl.js"></script>
@@ -46,7 +47,7 @@
     </ion-nav-view>
     <!-- </ion-content> -->
   </ion-pane>
-  <script id="error-list.html" type="text/ng-template">  
+  <script id="error-list.html" type="text/ng-template">
     <div class="error" ng-message="required">
       <i class="ion-information-circled"></i> 
       This field is required!

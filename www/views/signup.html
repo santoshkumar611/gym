@@ -1,52 +1,96 @@
+
 <ion-view view-title="{{testing}}" title="Login">
   <div class="bar bar-header bar-positive">
     <h1 class="title">Register</h1>
   </div>
   <ion-content class="has-header padding" scroll="true" overflow-scroll="true">
 
-    <form name="registerationForm" ng-init="user = {}" ng-submit="signup()" novalidate>
+    <form name="registerationForm" ng-init="user = {}" ng-submit="registerationForm.$valid  && signup()" novalidate>
       <div class="list">
+        <label class="item item-radio" style="margin-bottom: 5px">
+          <span class = "input-label">I am </span>  
+          <ion-list>
+            <ion-radio ng-model="user.role" ng-value="'A'">Memeber</ion-radio>
+            <ion-radio ng-model="user.role" ng-value="'B'">Trainer</ion-radio>
+          </ion-list>
+        </label>
         <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.firstName.$invalid&&registerationForm.firstName.$touched, 'no-errors' : registerationForm.firstName.$valid}">
           <span class = "input-label">First Name</span>
           <input type = "text" name="firstName" ng-model = "user.firstName" placeholder = "enter first name" required />
         </label>
-        <div class="error-container" ng-show="(registerationForm.firstName.$invalid && registerationForm.firstName.$touched) || (registerationForm.firstName.$invalid && registerationForm.firstName.$submitted) " ng-messages="registerationForm.firstName.$error">
-          <div class="error" ng-message="required">
-            <i class="ion-information-circled"></i> 
-            This field is required!
-          </div>
-          <div ng-messages-include="error-list.html"></div>
+        <div class="error-container" ng-show="(registerationForm.firstName.$invalid && registerationForm.firstName.$touched) || (registerationForm.firstName.$invalid && registerationForm.$submitted) " ng-messages="registerationForm.firstName.$error">
+          <div ng-messages-include="views/errors-list.html"></div>
         </div>
-        <label class="item item-input">
+
+        <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.lastName.$invalid&&registerationForm.lastName.$touched, 'no-errors' : registerationForm.lastName.$valid}">
           <span class = "input-label">Last Name</span>
           <input type = "text" name="lastName" ng-model = "user.lastName" placeholder = "enter last name" required/>
         </label>
-        <div class="error-container" ng-show="(registerationForm.firstName.$invalid && registerationForm.firstName.$touched) || (registerationForm.firstName.$invalid && registerationForm.firstName.$submitted) " ng-messages="registerationForm.firstName.$error">
-          <div class="error" ng-message="required">
-            <i class="ion-information-circled"></i> 
-            This field is required!
-          </div>
+        <div class="error-container" ng-show="(registerationForm.lastName.$invalid && registerationForm.lastName.$touched) || (registerationForm.lastName.$invalid && registerationForm.$submitted) " ng-messages="registerationForm.lastName.$error">
+          <div ng-messages-include="views/errors-list.html"></div>
         </div>
-        <label class="item item-input">
+        
+        <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.email.$invalid&&registerationForm.email.$touched, 'no-errors' : registerationForm.email.$valid}">
           <span class = "input-label">Email</span>
           <input type = "email" name="email" ng-model = "user.email" placeholder = "enter email" required/>
         </label>
-        <label class="item item-input">
+        <div class="error-container" ng-show="(registerationForm.email.$invalid && registerationForm.email.$touched) || (registerationForm.email.$invalid && registerationForm.$submitted) " ng-messages="registerationForm.email.$error">
+          <div ng-messages-include="views/errors-list.html"></div>
+        </div>
+        
+        <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.password.$invalid&&registerationForm.password.$touched, 'no-errors' : registerationForm.password.$valid}">
+          <span class = "input-label">Password</span>
+          <input type = "password" name="password" ng-model = "user.password" placeholder = "enter password" password-verify="{{user.confirmpassword}}" required/>
+        </label>
+        <div class="error-container" ng-show="(registerationForm.password.$invalid && registerationForm.password.$touched) || (registerationForm.password.$invalid && registerationForm.$submitted) " ng-messages="registerationForm.password.$error">
+          <div ng-messages-include="views/errors-list.html"></div>
+        </div>
+
+        <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.confirmpassword.$invalid&&registerationForm.confirmpassword.$touched, 'no-errors' : registerationForm.confirmpassword.$valid}">
+          <span class = "input-label">Confirm Password</span>
+          <input type = "password" name="confirmpassword" ng-model = "user.confirmpassword" placeholder = "enter password" password-verify="{{user.password}}" required/>
+        </label>
+        <div class="error-container" ng-show="(registerationForm.confirmpassword.$invalid && registerationForm.confirmpassword.$touched) || (registerationForm.confirmpassword.$invalid && registerationForm.$submitted) " ng-messages="registerationForm.confirmpassword.$error">
+          <div ng-messages-include="views/errors-list.html"></div>
+          <div class="error" ng-message="passwordVerify">
+            <i class="ion-information-circled"></i> 
+            Passwords not match
+          </div>
+        </div>
+        <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.address.$invalid&&registerationForm.address.$touched, 'no-errors' : registerationForm.address.$valid}">
           <span class = "input-label">Address</span>
           <input type = "text" name="address" ng-model="user.address" placeholder = "enter address" required/>
         </label>
-        <label class="item item-input">
+        <div class="error-container" ng-show="(registerationForm.address.$invalid && registerationForm.address.$touched) || (registerationForm.address.$invalid && registerationForm.$submitted) " ng-messages="registerationForm.address.$error">
+          <div ng-messages-include="views/errors-list.html"></div>
+        </div>
+
+        <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.city.$invalid&&registerationForm.city.$touched, 'no-errors' : registerationForm.city.$valid}">
           <span class = "input-label">City</span>
           <input type = "text" name="city" ng-model="user.city" placeholder = "enter city" required/>
         </label>
-        <label class="item item-input">
+        <div class="error-container" ng-show="(registerationForm.city.$invalid && registerationForm.city.$touched) || (registerationForm.city.$invalid && registerationForm.$submitted) " ng-messages="registerationForm.city.$error">
+          <div ng-messages-include="views/errors-list.html"></div>
+        </div>
+
+
+        <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.state.$invalid&&registerationForm.state.$touched, 'no-errors' : registerationForm.state.$valid}">
           <span class = "input-label">State</span>
           <input type = "text" name="state" ng-model="user.state" placeholder = "enter state" required/>
         </label>
-        <label class="item item-input">
+        <div class="error-container" ng-show="(registerationForm.state.$invalid && registerationForm.state.$touched) || (registerationForm.state.$invalid && registerationForm.$submitted) " ng-messages="registerationForm.state.$error">
+          <div ng-messages-include="views/errors-list.html"></div>
+        </div>
+
+
+        <label class="item item-input" ng-class="{ 'has-errors' : registerationForm.zipcode.$invalid&&registerationForm.zipcode.$touched, 'no-errors' : registerationForm.zipcode.$valid}">
           <span class = "input-label">Zipcode</span>
-          <input type = "text" name="zipcode" ng-model="user.zipcode" placeholder = "enter zipcode" required/>
-        </label>{{registerationForm.$valid}}
+          <input type = "text" only-numbers name="zipcode" ng-model="user.zipcode" placeholder = "enter zipcode" required/>
+        </label>
+        <div class="error-container" ng-show="(registerationForm.zipcode.$invalid && registerationForm.zipcode.$touched) || (registerationForm.zipcode.$invalid && registerationForm.$submitted) " ng-messages="registerationForm.zipcode.$error">
+          <div ng-messages-include="views/errors-list.html"></div>
+        </div>
+
       </div>
       <button class="button button-full button-positive" type="submit">
         Sign In
